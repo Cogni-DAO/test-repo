@@ -1,0 +1,22 @@
+name: MQ Test PR Only
+
+# Diagnostic workflow for Cogni-DAO/node-template merge-queue spec validation.
+# Fires on pull_request ONLY (no merge_group: trigger). Emits a check named `mq-test-pr-only`.
+# Mirrors the real-world shape of CodeQL default-setup + Validate PR title — both
+# required pre-merge but neither produces a status on the queue ref.
+# This is the central question we are validating: when a required check has no
+# merge_group: trigger, does the queue (a) wait forever or (b) skip it?
+# See: docs/spec/merge-queue-config.md in node-template.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  mq-test-pr-only:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Always pass
+        run: echo "Hello from ${{ github.event_name }} on ${{ github.ref }}"

@@ -1,0 +1,54 @@
+name: Node Template Parity Stubs
+
+# Emits the required-status-check contexts that Cogni-DAO/node-template's
+# canonical branch protection requires: `static`, `unit`, `component`,
+# `manifest`. Stubs only — real validation lives in node-template.
+#
+# Why these jobs exist:
+#   - test-repo runs the canonical Cogni branch-protection from
+#     infra/github/branch-protection.json (in node-template).
+#   - The merge queue waits forever for required checks whose workflows
+#     don't fire on merge_group (REPORT_OR_DON'T_REQUIRE invariant).
+#   - This file ensures every required check has a producing workflow,
+#     making test-repo a faithful replica for queue experiments.
+#
+# Spec: docs/spec/merge-queue-config.md (in node-template).
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ntp-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pass (stub)
+        run: echo "static OK on ${{ github.event_name }}"
+
+  unit:
+    runs-on: ubuntu-latest
+    needs: static
+    steps:
+      - name: Pass (stub)
+        run: echo "unit OK on ${{ github.event_name }}"
+
+  component:
+    runs-on: ubuntu-latest
+    needs: static
+    steps:
+      - name: Pass (stub)
+        run: echo "component OK on ${{ github.event_name }}"
+
+  manifest:
+    runs-on: ubuntu-latest
+    needs: [unit, component]
+    steps:
+      - name: Pass (stub)
+        run: echo "manifest OK on ${{ github.event_name }}"

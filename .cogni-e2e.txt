@@ -1,1 +1,1 @@
-2025-09-29T14:16:07.771Z
+bug.5000 e2e review proof — worker delegates GitHub I/O to operator (candidate-a 900f6ff1).

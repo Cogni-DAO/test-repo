@@ -1,1 +1,1 @@
-2025-09-29T14:16:07.771Z
+bug.5000 e2e proof v2 — now with candidate-a Loki shipping restored.

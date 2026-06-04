@@ -1,1 +1,1 @@
-bug.5000 e2e review proof — worker delegates GitHub I/O to operator (candidate-a 900f6ff1).
+bug.5000 e2e proof v2 — now with candidate-a Loki shipping restored.
